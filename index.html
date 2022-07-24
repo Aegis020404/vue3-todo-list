@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="theme.css">
+    <title>Document</title>
+</head>
+<body>
+
+<div class="container " id="app">
+
+    <div class="card">
+        <h1 :style="{
+        transition: '1s all',
+        color: inputValue.length < 33  ? 'green' : inputValue.length < 66 ? 'yellow' : 'red'
+        }">{{title}}</h1>
+        <form  @submit="addNewNote" >
+        <div class="form-control">
+            <input  type="text"
+                    :placeholder="placeholderString"
+                    v-model="inputValue"
+            >
+        </div>
+            <button type="submit" class="btn" >Добавить</button>
+        </form>
+            <hr>
+            <ul class="list" v-if="notes.length">
+                <li class="list-item" v-for="(note, idx) in notes">
+                  ({{idx+1}})  {{note.toUpperCase()}}  <button class="btn danger" @click="removeNote(idx)">удалить</button>
+                </li>
+                <hr>
+                <li> <strong> Общее колличество: {{notes.length}} </strong> | <strong> Удвоенное колличество: {{doubleCountComputed}} </strong> </li>
+            </ul>
+            <div v-else >Заметок пока нет. Добавьте первую</div>
+    </div>
+
+
+
+
+<!--    Счётчик-->
+<!--    <div class="card center">-->
+<!--        <h1>{{title}}: {{counter}} </h1>-->
+<!--        <div>-->
+<!--            <button class="btn primary" v-on:click="counter++">+</button>-->
+<!--            <button class="btn danger" v-on:click="counter&#45;&#45;">-</button>-->
+<!--        </div>-->
+<!--    </div>-->
+</div>
+
+
+<script src="https://unpkg.com/vue@next"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
